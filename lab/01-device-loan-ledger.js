@@ -30,14 +30,30 @@ function checkoutDevice (ledger, assetTag ,borrower) {
     };
 }
 
-
-
-
-
-// console.log(equipmentLedger?.[6]?.type);
-// function checkinDevice () {
+function checkinDevice (ledger, assetTag) {
     
-// }
+  const newLedger = structuredClone(ledger);
+
+  if (!newLedger[assetTag]) {
+    return {
+      ledger: ledger,
+      message: `Asset tag ${assetTag} not found.`
+    };
+  }
+
+  newLedger[assetTag].borrower = {
+    name: '',
+    email:'',
+  };
+  newLedger[assetTag].status = 'CheckedIn';
+  newLedger[assetTag].dueDate = '';
+
+  return {
+    ledger: newLedger,
+    message: `Asset tag ${assetTag} successfully checked in.`
+  };
+}
+
 // function listOverdueDevices () {
     
 // }
@@ -56,3 +72,5 @@ const peminjam = {
 const coba = checkoutDevice(equipmentLedger, '2', peminjam);
 // const coba = checkoutDevice(equipmentLedger, '2' );
 console.log(coba);
+
+// console.log(equipmentLedger?.[6]?.type);
