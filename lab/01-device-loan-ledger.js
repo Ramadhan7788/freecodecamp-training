@@ -54,9 +54,38 @@ function checkinDevice (ledger, assetTag) {
   };
 }
 
-// function listOverdueDevices () {
-    
-// }
+function formatDate(dateStr) {
+  const [m, d, y] = dateStr.split('/');
+  return `${y}-${m.padStart(2, '0')}-${d.padStart(2, '0')}`;
+}
+
+function listOverdueDevices(ledger, today) {
+  const overdueDevices = [];
+  const fullToday = formatDate(today);
+
+  for (const assetTag in ledger) {
+    const item = ledger[assetTag];
+
+    if (item.status === "CheckedOut") {
+      const formattedDueDate = formatDate(item.dueDate);
+
+      if (formattedDueDate < fullToday) {
+        overdueDevices.push({
+          ...item,
+          formattedDueDate
+        });
+      }
+    }
+  }
+  overdueDevices.sort((a, b) => a.formattedDueDate.localeCompare(b.formattedDueDate));
+  return overdueDevices;
+};
+
+
+  
+const coba = listOverdueDevices(equipmentLedger, '12/25/2025');
+console.log(coba);
+
 // function serializeLedger () {
     
 // }
@@ -64,13 +93,13 @@ function checkinDevice (ledger, assetTag) {
     
 // }
 
-const peminjam = {
-  name: 'ucup',
-  email: 'ucup@sample.dev'
-}
+// const peminjam = {
+//   name: 'ucup',
+//   email: 'ucup@sample.dev'
+// }
 
-const coba = checkoutDevice(equipmentLedger, '2', peminjam);
-// const coba = checkoutDevice(equipmentLedger, '2' );
-console.log(coba);
+// const coba = checkoutDevice(equipmentLedger, '2', peminjam);
+// // const coba = checkoutDevice(equipmentLedger, '2' );
+// console.log(coba);
 
 // console.log(equipmentLedger?.[6]?.type);
