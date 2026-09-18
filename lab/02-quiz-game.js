@@ -36,6 +36,7 @@ const questions = [
 ];
 
 let randomQuestion = {};
+let computerChoice = '';
 
 const randomIndex = function (arr) {
     return Math.floor(Math.random() * arr.length);
@@ -46,12 +47,21 @@ const getRandomQuestion = function (arr) {
     return randomQuestion;
 };
 
-console.log(getRandomQuestion(questions));
-
 const getRandomComputerChoice = function (arr) {
-    const computerChoice = arr[randomIndex(arr)];
+    computerChoice = arr[randomIndex(arr)];
     
     return computerChoice;
 };
 
-console.log(getRandomComputerChoice(randomQuestion.choices));
+const getResult = function (questionObj, cmpChoice) {
+    
+    if (questionObj.answer === cmpChoice) {
+        return `The computer's choice is correct!`;
+    } else {
+        return `The computer's choice is wrong. The correct answer is: ${questionObj.answer}`;
+    }
+};
+
+getRandomQuestion(questions);
+getRandomComputerChoice(randomQuestion.choices);
+console.log(getResult(randomQuestion, computerChoice));
