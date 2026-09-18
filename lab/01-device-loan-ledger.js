@@ -81,25 +81,15 @@ function listOverdueDevices(ledger, today) {
   return overdueDevices;
 };
 
-
-  
 const coba = listOverdueDevices(equipmentLedger, '12/25/2025');
 console.log(coba);
 
-// function serializeLedger () {
-    
-// }
-// function loadLedger () {
-    
-// }
+function serializeLedger(ledger) {
+  const ledgerStr = JSON.stringify(ledger);
+  return ledgerStr;
+}
 
-// const peminjam = {
-//   name: 'ucup',
-//   email: 'ucup@sample.dev'
-// }
-
-// const coba = checkoutDevice(equipmentLedger, '2', peminjam);
-// // const coba = checkoutDevice(equipmentLedger, '2' );
-// console.log(coba);
-
-// console.log(equipmentLedger?.[6]?.type);
+function loadLedger(json) {
+  const jsonObject = JSON.parse(json);
+  return jsonObject;
+}
