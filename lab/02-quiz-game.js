@@ -33,16 +33,25 @@ const questions = [
     "choices": ["display: flexbox", "display: flex", "display: block"],
     "answer": "display: flex"
   }
-]
+];
+
+let randomQuestion = {};
 
 const randomIndex = function (arr) {
     return Math.floor(Math.random() * arr.length);
 };
 
 const getRandomQuestion = function (arr) {
-    const randomQuestion = arr[randomIndex(arr)];
+    randomQuestion = arr[randomIndex(arr)];
     return randomQuestion;
-}
-
+};
 
 console.log(getRandomQuestion(questions));
+
+const getRandomComputerChoice = function (arr) {
+    const computerChoice = arr[randomIndex(arr)];
+    
+    return computerChoice;
+};
+
+console.log(getRandomComputerChoice(randomQuestion.choices));
