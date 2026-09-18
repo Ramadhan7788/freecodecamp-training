@@ -39,5 +39,10 @@ const randomIndex = function (arr) {
     return Math.floor(Math.random() * arr.length);
 };
 
-console.log(randomIndex(questions));
-console.log(questions[randomIndex(questions)]);
+const getRandomQuestion = function (arr) {
+    const randomQuestion = arr[randomIndex(arr)];
+    return randomQuestion;
+}
+
+
+console.log(getRandomQuestion(questions));
