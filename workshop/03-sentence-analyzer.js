@@ -1,7 +1,13 @@
-const vowels = ['A', 'E', 'I', 'O', 'U']
-
 const getVowelCount = function (sentence) {
+    const vowels = "aeiou";
+    let count = 0;
 
-}
+    for (const char of sentence.toLowerCase()) {
+        if (vowels.includes(char)) {
+            count++;
+        }
+    }
+    return count;
+};
 
-console.log(getVowelCount("Apples are tasty fruits"))
+console.log(getVowelCount("Apples are tasty fruits"));
