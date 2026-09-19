@@ -35,14 +35,14 @@ const getPunctuationCount = function (sentence) {
     return count;
 }
 
-const vowelCount = getVowelCount("Apples are tasty fruits");
-const consonantCount = getConsonantCount("Coding is fun");
-const punctuationCount = getPunctuationCount("WHAT?!?!?!?!?");
-console.log(`Vowel Count: ${vowelCount}`);
-console.log(`Consonant Count: ${consonantCount}`);
-console.log(`Punctuation Count: ${punctuationCount}`);
+const getWordCount = function (sentence) {
+    let count = 0;
+    const words = sentence.trim().split(" ");
 
-
-const kalimat = 'ada apa dengan dunia'
-
-console.log(kalimat.split(' '))
+    for (const word of words) {
+        if (word !== '') {
+            count++;
+        }
+    }
+    return count;
+}   
