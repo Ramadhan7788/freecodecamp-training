@@ -18,7 +18,22 @@ const recordCollection = {
   }
 };
 
-const updateRecords = function(records, id, prop, value) {
-    return;
-}
 
+const updateRecords = function(records, id, prop, value) {
+;
+    
+    if (value === '') {
+        delete records[id][prop];
+    } else if (prop !== 'tracks' && value !== '') {
+        records[id][prop] = value;
+    } else if (prop === 'tracks') {
+        if(!records[id][prop]) {
+            records[id][prop] = [];
+        }
+        records[id][prop].push(value);
+    } 
+    return records;    
+};
+
+updateRecords(recordCollection, 5439, "tracks", "Take a Chance on Me");
+console.log(recordCollection);
