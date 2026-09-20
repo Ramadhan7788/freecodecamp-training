@@ -97,9 +97,20 @@ const chunkCrew = function (crew, size) {
 
 const EVAChunks = chunkCrew(EVAReadySquad, 3);
 
-for (let i = 0; i < EVAChunks.length; i++) {
-	console.log(`Chunk ${i + 1}:`);
-	for (let j = 0; j < EVAChunks[i].length; j++) {
-		console.log(EVAChunks[i][j].name);
+// for (let i = 0; i < EVAChunks.length; i++) {
+// 	console.log(`Chunk ${i + 1}:`);
+// 	for (let j = 0; j < EVAChunks[i].length; j++) {
+// 		console.log(EVAChunks[i][j].name);
+// 	}
+// }
+
+const printCrewSummary = function (crew) {
+	const sorted = crew.slice();
+	sortByPriorityDescending(sorted);
+	
+	for (let i = 0; i < sorted.length; i++) {
+		console.log(sorted[i].name)
 	}
-}
+};
+
+printCrewSummary(updatedSquad);
