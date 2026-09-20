@@ -52,4 +52,14 @@ const runSequence = function (config, cycles) {
     }
 };
 
-runSequence(config2, 2);
+const generateTimeline = function (config, cycles) {
+    const cumulativeDuration = [];
+    let runningTotal = 0;
+
+    for (let i = 1; i <= cycles; i++) {
+        for (const phase of config.phases) {
+            cumulativeDuration.push(runningTotal += phase.duration);
+        }
+    }
+    return cumulativeDuration;
+}
