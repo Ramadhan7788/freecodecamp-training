@@ -47,14 +47,25 @@ const swapCrewMembers = function (crew, fromIndex, toIndex) {
 	const updatedCrew = crew.slice();
 	
 	updatedCrew[fromIndex] = updatedCrew.splice(toIndex, 1, updatedCrew[fromIndex])[0];
-	// console.log(updatedCrew);
-	// for (let j = 0; j < updatedCrew.length; j++) {
-	// 	console.log(updatedCrew[j].name);
-	// }
 	return updatedCrew;
 };
 
+const updatedSquad = swapCrewMembers(squad, 2, 5);
+
 swapCrewMembers(squad, 0, 3);
+
+const sortByPriorityDescending = function (crew) {
+	for (let i = 0; i < crew.length - 1; i++) {
+		for (let j = 0; j < crew.length - 1; j++) {
+			if (crew[j].priority < crew[j + 1].priority) {
+				const temp = crew[j];
+				crew[j] = crew[j + 1];
+				crew[j + 1] = temp;
+			}
+		}
+	}
+	return;
+}
 
 const getEVAReadyCrew = function (crew) {
 	const eligible = [];
@@ -64,8 +75,13 @@ const getEVAReadyCrew = function (crew) {
 			eligible.push(crew[i]);
 		}
 	}
-	console.log(eligible);
+	sortByPriorityDescending(eligible);
 	return eligible;
 };
 
-getEVAReadyCrew(squad);
+const EVAReadySquad = getEVAReadyCrew(updatedSquad);
+console.log(EVAReadySquad)
+
+for (let i = 0; i < EVAReadySquad.length; i++) {
+	console.log(EVAReadySquad[i].name);
+}
