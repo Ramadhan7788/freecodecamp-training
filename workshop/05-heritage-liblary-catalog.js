@@ -54,3 +54,20 @@ const parseCatalog = function (rawCards) {
 const catalog = parseCatalog(rawCatalogCards);
 // console.log(catalog);
 
+const findByAuthor = function (catalog, author) {
+	const searchTerm = author.toLowerCase();
+  	const results = [];
+  	for (let i = 0; i < catalog.length; i++) {
+		if (catalog[i].author.toLowerCase().includes(searchTerm)) {
+			results.push(catalog[i]);
+		}
+  	}
+  	return results;
+};
+
+// const kingBooks = findByAuthor(catalog, 'king');
+// console.log(kingBooks.length);
+
+// for (let i = 0; i < kingBooks.length; i++) {
+// 	console.log(`${kingBooks[i].title} (${kingBooks[i].year})`)
+// }
