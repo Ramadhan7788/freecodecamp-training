@@ -139,4 +139,24 @@ const exportToJSON = function (catalog) {
 	return JSON.stringify(catalog, null, 2);
 };
 
-console.log(exportToJSON(catalog.slice(0, 2)))
+// console.log(exportToJSON(catalog.slice(0, 2)))
+
+const exportToCSV = function (catalog) {
+	const header = 'Title,Author,Year,Location';
+	const rows = [];
+	for (let i = 0; i < catalog.length; i++) {
+		const entry = catalog[i];
+		const stringRow = `"${entry.title}","${entry.author}",${entry.year},"${entry.location}"`;
+		rows.push(stringRow);
+	}
+	let csv = header
+	for (let i = 0; i < rows.length; i++) {
+		csv = csv + '\n' + rows[i];
+	}
+	return csv;
+};
+
+console.log(exportToCSV(catalog));
+
+// console.log(catalog.length);
+// console.log(Object.keys(byDecade).length);
