@@ -44,9 +44,13 @@ const parseCard = function (rawString) {
 // console.log(result)
 
 const parseCatalog = function (rawCards) {
-  const catalog = [];
-  return catalog;
+	const catalog = [];
+	for (let i = 0; i < rawCards.length; i++) {
+		catalog.push(parseCard(rawCards[i]));
+  	}
+  	return catalog;
 };
 
 const catalog = parseCatalog(rawCatalogCards);
-console.log(catalog);
+// console.log(catalog);
+
