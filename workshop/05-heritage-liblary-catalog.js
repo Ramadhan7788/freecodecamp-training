@@ -95,5 +95,21 @@ const groupByDecade = function (catalog) {
 	return grouped;
 };
 
-// const byDecade = groupByDecade(catalog);
+const byDecade = groupByDecade(catalog);
 // console.log(byDecade);
+
+const renderEntry = function (entry) {
+	const title = entry.title || 'Unknown';
+	const author = entry.author || 'Unknown';
+	const year = entry.year || 'Unknown';
+	const location = entry.location || 'Unknown';
+
+	return `${"-".repeat(25)}
+Title: ${title}
+Author: ${author}
+Year: ${year}
+Location: ${location}
+${"-".repeat(25)}`;
+};
+
+// console.log(renderEntry(catalog[0]));
