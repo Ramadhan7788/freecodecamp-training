@@ -9,3 +9,6 @@ const findLongestWordLength = function (sentence) {
 	return wordLength;
 };
 
+const sentence = "The quick brown fox jumped over the lazy dog";
+const coba = findLongestWordLength(sentence);
+console.log(coba);
