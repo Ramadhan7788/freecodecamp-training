@@ -132,5 +132,11 @@ const validateEntry = function (entry) {
 	return isValid;
 }
 
-console.log(validateEntry(catalog[0]));
-console.log(validateEntry(catalog[16]));
+// console.log(validateEntry(catalog[0]));
+// console.log(validateEntry(catalog[16]));
+
+const exportToJSON = function (catalog) {
+	return JSON.stringify(catalog, null, 2);
+};
+
+console.log(exportToJSON(catalog.slice(0, 2)))
