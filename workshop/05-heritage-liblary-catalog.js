@@ -22,5 +22,31 @@ const rawCatalogCards = [
 ];
 
 const parseCard = function (rawString) {
+	const parts = rawString.split('|');
+	const trimmedParts =[];
+	for (let i = 0; i < parts.length; i++) {
+		trimmedParts.push(parts[i].trim());
+	}
+	const title = trimmedParts[0];
+	const author = trimmedParts[1];
+	const year = trimmedParts[2];
+	const location = trimmedParts[3];
 
+	return {
+		title: title || 'Unknown',
+    	author: author || 'Unknown',
+    	year: year ? +year : 'Unknown',
+    	location: location || 'Unknown',
+	};
 };
+
+// const result = parseCard(rawCatalogCards[16]);
+// console.log(result)
+
+const parseCatalog = function (rawCards) {
+  const catalog = [];
+  return catalog;
+};
+
+const catalog = parseCatalog(rawCatalogCards);
+console.log(catalog);
