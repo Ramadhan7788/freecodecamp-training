@@ -89,3 +89,17 @@ const toggleDisplayStatus = function (id) {
 // console.log(collection[102].onDisplay);
 toggleDisplayStatus(102);
 // console.log(collection[102].onDisplay);
+
+const updateCurator = function (id, name) {
+	const artifact = collection[id];
+
+	if (!artifact) {
+		return 'Artifact not f0und';
+	}
+
+	artifact.curator.name = name
+};
+
+updateCurator(101, "Fran Sinclair");
+// console.log(collection[101].curator.name);
+
