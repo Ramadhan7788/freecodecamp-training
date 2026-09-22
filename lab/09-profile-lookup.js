@@ -25,3 +25,24 @@ let contacts = [
 	},
 ];
 
+const lookUpProfile = function (name, prop) {
+	for (let i = 0; i < contacts.length; i++) {
+		if (contacts[i].firstName === name) {
+			if (prop === 'lastName') {
+				return contacts[i].lastName;
+			}
+			if (prop === 'number') {
+				return contacts[i].number;
+			}
+			if (prop === 'likes') {
+				return contacts[i].likes;
+			}
+			if (!contacts[i][prop]) {
+				return 'No such property'
+			}
+		} 
+	}
+	return 'No such contact'
+};
+
+console.log(lookUpProfile('Sherlock', "number"));
