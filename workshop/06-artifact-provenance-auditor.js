@@ -74,3 +74,18 @@ const moveArtifact = function (id, gallery, year) {
 
 moveArtifact(102, "Hall B", 2026);
 // console.log(collection[102].locations);
+
+const toggleDisplayStatus = function (id) {
+	const artifact = collection[id];
+	
+	if (!artifact) {
+		return 'Artifact not f0und';
+	}
+
+	artifact.onDisplay = !artifact.onDisplay;
+
+};
+
+// console.log(collection[102].onDisplay);
+toggleDisplayStatus(102);
+// console.log(collection[102].onDisplay);
