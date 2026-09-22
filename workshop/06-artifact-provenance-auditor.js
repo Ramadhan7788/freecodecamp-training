@@ -39,4 +39,20 @@ const getArtifactTitle = function (id) {
 	return artifact.title;
 }
 
-console.log(getArtifactTitle(104));
+// console.log(getArtifactTitle(104));
+
+const addTag = function (id, tag) {
+	const artifact = collection[id];
+	if (!artifact) {
+		return 'Artifact not f0und';
+	}
+
+	if (artifact) {
+		if (!artifact.tags.includes(tag)) {
+			artifact.tags.push(tag);
+		}
+	}
+};
+
+addTag (101, 'ayam');
+console.log(collection[101])
