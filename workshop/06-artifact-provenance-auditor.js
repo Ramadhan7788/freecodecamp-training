@@ -26,5 +26,17 @@ const collection = {
 	} 
 };
 
-console.log(collection[101].title);
-console.log(collection[101].curator.name);
+// console.log(collection[101].title);
+// console.log(collection[101].curator.name);
+
+const getArtifactTitle = function (id) {
+	const artifact = collection[id];
+
+	if (!artifact) {
+		return 'Artifact not f0und';
+	}
+
+	return artifact.title;
+}
+
+console.log(getArtifactTitle(104));
