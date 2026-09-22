@@ -31,11 +31,9 @@ const collection = {
 
 const getArtifactTitle = function (id) {
 	const artifact = collection[id];
-
 	if (!artifact) {
-		return 'Artifact not f0und';
+		return 'Artifact not found';
 	}
-
 	return artifact.title;
 }
 
@@ -44,9 +42,8 @@ const getArtifactTitle = function (id) {
 const addTag = function (id, tag) {
 	const artifact = collection[id];
 	if (!artifact) {
-		return 'Artifact not f0und';
+		return 'Artifact not found';
 	}
-
 	if (artifact) {
 		if (!artifact.tags.includes(tag)) {
 			artifact.tags.push(tag);
@@ -59,17 +56,14 @@ addTag(101, "royal");
 
 const moveArtifact = function (id, gallery, year) {
 	const artifact = collection[id];
-
 	if (!artifact) {
-		return 'Artifact not f0und';
+		return 'Artifact not found';
 	}
-
 	const newLocation = {
 		gallery: gallery,
 		year: year
 	}
 	artifact.locations.push(newLocation);
-
 };
 
 moveArtifact(102, "Hall B", 2026);
@@ -77,13 +71,10 @@ moveArtifact(102, "Hall B", 2026);
 
 const toggleDisplayStatus = function (id) {
 	const artifact = collection[id];
-	
 	if (!artifact) {
-		return 'Artifact not f0und';
+		return 'Artifact not found';
 	}
-
 	artifact.onDisplay = !artifact.onDisplay;
-
 };
 
 // console.log(collection[102].onDisplay);
@@ -92,14 +83,26 @@ toggleDisplayStatus(102);
 
 const updateCurator = function (id, name) {
 	const artifact = collection[id];
-
 	if (!artifact) {
-		return 'Artifact not f0und';
+		return 'Artifact not found';
 	}
-
 	artifact.curator.name = name
 };
 
 updateCurator(101, "Fran Sinclair");
 // console.log(collection[101].curator.name);
 
+const buildSummary = function (id) {
+	const artifact = collection[id];
+	if (!artifact) {
+		return 'Artifact not found';
+	}
+	const currentLocation = artifact.locations[artifact.locations.length - 1];
+	return `${artifact.title}
+Category: ${artifact.category}
+Curator: ${artifact.curator.name}
+Current Gallery: ${currentLocation.gallery}
+On Display: ${artifact.onDisplay}`;
+};
+
+console.log(buildSummary(101));
