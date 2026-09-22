@@ -54,5 +54,23 @@ const addTag = function (id, tag) {
 	}
 };
 
-addTag (101, 'ayam');
-console.log(collection[101])
+addTag(101, "royal");
+// console.log(collection[101].tags);
+
+const moveArtifact = function (id, gallery, year) {
+	const artifact = collection[id];
+
+	if (!artifact) {
+		return 'Artifact not f0und';
+	}
+
+	const newLocation = {
+		gallery: gallery,
+		year: year
+	}
+	artifact.locations.push(newLocation);
+
+};
+
+moveArtifact(102, "Hall B", 2026);
+// console.log(collection[102].locations);
