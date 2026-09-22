@@ -17,5 +17,20 @@ const initializeThroughput = function (gates) {
 	for (const gate of gates) {
 		summary[gate.id] = 0;
 	}
-	return summary;
+	return summary;	
 };
+
+const processGateFlow = function (gate, tickIndex) {
+	let currentTickQueue = gate.queue[tickIndex];
+	let processed = 0;
+	while (currentTickQueue > 0 && processed < gate.capacity) {
+		currentTickQueue--;
+		processed++;
+	}
+	return {
+		processed: processed,
+    	overflow: currentTickQueue
+	};
+};
+
+console.log(processGateFlow(nightGates[0], 0))
