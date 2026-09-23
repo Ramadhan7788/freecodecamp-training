@@ -84,3 +84,10 @@ console.log(handleGateAtTick({
 	tickIndex: 1,
 	throughputSummary: 1,
 }));
+
+const printSummary = function (summary) {
+	console.log('\nThroughput Summary');
+	for (let gate in summary) {
+		console.log(gate + ": " + summary[gate] + " attendees processed");
+	}
+};
