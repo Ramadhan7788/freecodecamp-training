@@ -97,3 +97,6 @@ const simulateFestival = function (gates, timeBlock) {
     }
     printSummary(throughputSummary);
 };
+
+simulateFestival(morningGates, "Morning");
+simulateFestival(nightGates, "Night");
