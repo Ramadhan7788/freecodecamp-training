@@ -17,10 +17,8 @@ const initializeThroughput = function (gates) {
 	for (const gate of gates) {
 		summary[gate.id] = 0;
 	}
-	return summary;	
+	return summary; 
 };
-
-console.log(initializeThroughput(nightGates));
 
 const processGateFlow = function (gate, tickIndex) {
 	let currentTickQueue = gate.queue[tickIndex];
@@ -31,11 +29,9 @@ const processGateFlow = function (gate, tickIndex) {
 	}
 	return {
 		processed: processed,
-    	overflow: currentTickQueue
+		overflow: currentTickQueue
 	};
 };
-
-console.log(processGateFlow(nightGates[1], 1))
 
 const rerouteOverflow = function ({ 
 	gates, 
@@ -43,18 +39,14 @@ const rerouteOverflow = function ({
 	tickIndex, 
 	overflowAmount,
 }) {
-	const currentIndex = gates.indexOf(currentGate);
+	const currentIndex = typeof currentGate === "string" 
+		? gates.findIndex(g => g.id === currentGate)
+		: gates.indexOf(currentGate);
+
 	const nextGateIndex = (currentIndex + 1) % gates.length;
 	gates[nextGateIndex].queue[tickIndex] += overflowAmount;
-	console.log(overflowAmount + " attendees rerouted to " + gates[nextGateIndex].id)
+	console.log(overflowAmount + " attendees rerouted to " + gates[nextGateIndex].id);
 };
-
-rerouteOverflow({
-	gates: nightGates,
-	currentGate: "East",
-	tickIndex: 1,
-	overflowAmount: 1,
-});
 
 const handleGateAtTick = function ({
 	gates,
@@ -64,30 +56,44 @@ const handleGateAtTick = function ({
 }) {
 	console.log("\nProcessing " + gate.id + "...");
 	console.log(gate.queue[tickIndex] + " attendees arriving.");
-
 	const result = processGateFlow(gate, tickIndex);
 	throughputSummary[gate.id] += result.processed;
-	
-	console.log("Overflow of " + result.overflow + " attendees. Rerouting...");
-	rerouteOverflow({
-		gates: gates,
-		currentGate: gate,
-		tickIndex: tickIndex,
-		overflowAmount: result.overflow,
-	})
-
+	if (result.overflow > 0) {
+		console.log(
+			"Overflow of " + result.overflow + " attendees. Rerouting..."
+		);
+			rerouteOverflow({
+				gates: gates,
+				currentGate: gate,
+				tickIndex: tickIndex,
+				overflowAmount: result.overflow
+        });
+    }
 };
 
-console.log(handleGateAtTick({
-	gates: nightGates,
-	gate: nightGates[0],
-	tickIndex: 1,
-	throughputSummary: 1,
-}));
-
 const printSummary = function (summary) {
-	console.log('\nThroughput Summary');
-	for (let gate in summary) {
-		console.log(gate + ": " + summary[gate] + " attendees processed");
-	}
+    console.log('\nThroughput Summary');
+    for (let gate in summary) {
+        console.log(gate + ": " + summary[gate] + " attendees processed");
+    }
+};
+
+const simulateFestival = function (gates, timeBlock) {
+    console.log('\n' + timeBlock + ' Simulation');
+    const throughputSummary = initializeThroughput(gates);
+    const maxTicks = gates[0].queue.length;
+    let tickIndex = 0;
+    while (tickIndex < maxTicks) {
+        console.log("\nTick " + (tickIndex + 1));
+        for (const gate of gates) {
+            handleGateAtTick({
+                gates: gates,
+                gate: gate,
+                tickIndex: tickIndex,
+                throughputSummary: throughputSummary,
+            });
+        }
+        tickIndex++;
+    }
+    printSummary(throughputSummary);
 };
