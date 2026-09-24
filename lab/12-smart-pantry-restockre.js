@@ -12,27 +12,46 @@ const rawData = [
 	"E54|Peppers|-1|2027-01-01|fridge"
 ];
 
-const parseShipment = function (arr) {
-	const newData = [];
+const parseShipment = function (rawRecords) {
+	const uniqueProducts = [];
 	const seenSkus = new Set();
 
-	for (let i = 0; i < arr.length; i++) {
-		const product = arr[i].split('|');
-		const sku = product[0];
-		const name = product[1];
-		const qty = +product[2];
-		const expires = product[3];
-		const zone = product[4] ?? 'general';
-
-		const productInfo = {sku, name, qty, expires, zone};
+	for (const record of rawRecords) {
+		const [sku, name, rawQty, expires, zone = 'general'] = record.split('|');
+		const qty = +rawQty;
+		const product = {sku, name, qty, expires, zone};
 
 		if (!seenSkus.has(sku)) {
 			seenSkus.add(sku);
-			newData.push(productInfo);
+			uniqueProducts.push(product);
 		}
-
 	}
-	return newData;
+	return uniqueProducts;
 };
 
-parseShipment(rawData);
+const shipment = parseShipment(rawData);
+// console.log(shipment);
+
+const planRestock = function (pantry , shipment) {
+	const categorizedItems = [];
+	const pantrySkus = [];
+	for (const product of pantry) {
+		pantrySkus.push(product.sku)
+	}
+	
+	for (const item of shipment) {
+		let label = '';
+		if (item.qty <= 0) {
+			label = 'discard';
+		} else if (pantrySkus.includes(item.sku)) {
+			label = 'restock';
+		} else {
+			label = 'donate'
+		}
+	categorizedItems.push({type: label, item: item});
+	}
+	return categorizedItems;
+};
+
+const restock = planRestock(pantry, shipment);
+console.log(restock);
