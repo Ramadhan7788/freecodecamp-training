@@ -63,3 +63,7 @@ const analyzeTexts = function (texts, phraseLength) {
 	}
 	return result;
 };
+
+const daftarKata = [["level", "noon", "radar"], ["the", "cat", "sat", "the", "cat"], ["level", "noon", "radar"]];
+const testFindPhreases = analyzeTexts(daftarKata, 2);
+console.log(testFindPhreases);
