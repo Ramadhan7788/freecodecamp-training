@@ -47,6 +47,19 @@ const findRepeatedPhrases = function (words, phraseLength) {
 	return repeatedIndices;
 };
 
-const daftarKata = ["the", "cat", "sat", "the", "cat"];
-const testFindPhreases = findRepeatedPhrases(daftarKata, 2);
-console.log(testFindPhreases);
+const analyzeTexts = function (texts, phraseLength) {
+	if (texts.length === 0) {
+        return [];
+    }
+	const result = [];
+	for (const words of texts) {
+		const phrase = findRepeatedPhrases(words, phraseLength);
+		const palindrome = findPalindromeBreaks(words);
+		const mapping = {
+			repeatedPhrases: phrase,
+			palindromeBreaks: palindrome,
+		}
+		result.push(mapping)
+	}
+	return result;
+};
