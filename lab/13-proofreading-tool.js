@@ -20,6 +20,33 @@ const findPalindromeBreaks = function (words) {
 	return notPalindrome;
 };
 
-const daftarKata = ['ramal', 'apa', 'lamar']
-const cobaFind = findPalindromeBreaks(daftarKata);
-console.log(cobaFind);
+const findRepeatedPhrases = function (words, phraseLength) {
+	if (phraseLength <= 0 || phraseLength > words.length) {
+        return [];
+    }
+
+	const phraseIndicesMap = new Map();
+	const maxStartIndex = words.length - phraseLength;
+
+	for (let i = 0; i <= maxStartIndex; i++) {
+		const phrase = words.slice(i, i + phraseLength).join(' ');
+
+		let indices = phraseIndicesMap.get(phrase);
+		if (!indices) {
+			indices = [];
+			phraseIndicesMap.set(phrase, indices);
+		}
+		indices.push(i);
+	}
+	const repeatedIndices = [];
+	for (const indices of phraseIndicesMap.values()) {
+		if (indices.length > 1) {
+			repeatedIndices.push(...indices)
+		}
+	}
+	return repeatedIndices;
+};
+
+const daftarKata = ["the", "cat", "sat", "the", "cat"];
+const testFindPhreases = findRepeatedPhrases(daftarKata, 2);
+console.log(testFindPhreases);
