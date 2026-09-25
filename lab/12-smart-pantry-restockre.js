@@ -54,4 +54,23 @@ const planRestock = function (pantry , shipment) {
 };
 
 const restock = planRestock(pantry, shipment);
-console.log(restock);
+// console.log(restock);
+
+const groupByZone = function (actions) {
+	const grouped = {};
+	
+	for (const action of actions) {
+		const zoneName = action.item.zone;
+		if (!grouped[zoneName]) {
+			grouped[zoneName] = [];
+		}
+		grouped[zoneName].push(action)
+	}
+	return grouped;
+};
+
+const checkZone = groupByZone(restock);
+console.log(checkZone);
+// for (let i = 0; i < restock.length; i++) {
+// 	console.log(restock[i].item.zone);
+// }
