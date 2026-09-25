@@ -7,5 +7,19 @@ const isPalindrome = function (word) {
 		return false;
 };
 
-const coba = isPalindrome('');
-console.log(coba);
+const findPalindromeBreaks = function (words) {
+	const notPalindrome = []
+	if (words.length === 0) {
+		return notPalindrome;
+	}
+	for (let i = 0; i < words.length; i++) {
+		if (!isPalindrome(words[i])) {
+			notPalindrome.push(i);
+		}
+	}
+	return notPalindrome;
+};
+
+const daftarKata = ['ramal', 'apa', 'lamar']
+const cobaFind = findPalindromeBreaks(daftarKata);
+console.log(cobaFind);
