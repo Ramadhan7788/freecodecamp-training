@@ -12,6 +12,11 @@ const rawData = [
 	"E54|Peppers|-1|2027-01-01|fridge"
 ];
 
+const clonePantry = function (pantry) {
+	const copiedPantry = structuredClone(pantry);
+	return copiedPantry;
+};
+
 const parseShipment = function (rawRecords) {
 	const uniqueProducts = [];
 	const seenSkus = new Set();
@@ -70,7 +75,5 @@ const groupByZone = function (actions) {
 };
 
 const checkZone = groupByZone(restock);
-console.log(checkZone);
-// for (let i = 0; i < restock.length; i++) {
-// 	console.log(restock[i].item.zone);
-// }
+// console.log(checkZone);
+
