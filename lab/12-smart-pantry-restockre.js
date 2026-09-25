@@ -34,9 +34,6 @@ const parseShipment = function (rawRecords) {
 	return uniqueProducts;
 };
 
-const shipment = parseShipment(rawData);
-// console.log(shipment);
-
 const planRestock = function (pantry , shipment) {
 	const categorizedItems = [];
 	const pantrySkus = [];
@@ -58,9 +55,6 @@ const planRestock = function (pantry , shipment) {
 	return categorizedItems;
 };
 
-const restock = planRestock(pantry, shipment);
-// console.log(restock);
-
 const groupByZone = function (actions) {
 	const grouped = {};
 	
@@ -74,6 +68,9 @@ const groupByZone = function (actions) {
 	return grouped;
 };
 
+const copiedPantry = clonePantry(pantry);
+const shipment = parseShipment(rawData);
+const restock = planRestock(copiedPantry, shipment);
 const checkZone = groupByZone(restock);
-// console.log(checkZone);
 
+console.log(checkZone);
