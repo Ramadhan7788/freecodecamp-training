@@ -20,4 +20,6 @@ function pyramid (char, num, isReverse) {
 	}
 	characters.push('\n');
 	return characters.join('');
-} 
+}
+
+console.log(pyramid("p", 5, true));
