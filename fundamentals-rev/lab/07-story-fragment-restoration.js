@@ -25,3 +25,14 @@ const shuffledFragments = [
 	{ id: 12, text: "he lay down beside the course to take a nap" },
 	{ id: 18, text: "the Tortoise was near the goal." },
 ];
+
+function compactFragments (arr) {
+	const cleanFragments = [];
+	for (let i = 0; i < arr.length; i++) {
+		if (arr[i]) { cleanFragments.push(arr[i]); } 
+		else { console.log(`[COMPACTED] index: ${i}`); }
+	}
+	return cleanFragments;
+}
+
+const compactedShuffledFragments = compactFragments(shuffledFragments);
