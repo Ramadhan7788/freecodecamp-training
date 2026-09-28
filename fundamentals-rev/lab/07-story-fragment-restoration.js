@@ -36,3 +36,17 @@ function compactFragments (arr) {
 }
 
 const compactedShuffledFragments = compactFragments(shuffledFragments);
+
+function sortFragments (fragments) {
+	const copiedFragments = [...fragments];
+	for (let i = 0; i < copiedFragments.length; i++) {
+		for (let j = 0; j < copiedFragments.length -1; j++) {
+			if (copiedFragments[j].id > copiedFragments[j + 1].id) {
+				[copiedFragments[j], copiedFragments[j + 1]] = [copiedFragments[j + 1], copiedFragments[j]]
+			}
+		}
+	}
+	return copiedFragments;
+}
+
+const sortedFragments = sortFragments(compactedShuffledFragments);
