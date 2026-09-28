@@ -50,3 +50,19 @@ function sortFragments (fragments) {
 }
 
 const sortedFragments = sortFragments(compactedShuffledFragments);
+
+function dedupeFragments (fragments) {
+	const uniqueFragments = [];
+	for (let i = 0; i < fragments.length; i++) {
+		const currentFragment = fragments[i];
+		const fragmentexist = uniqueFragments.some(fragment => fragment.id === currentFragment.id);
+		if (!fragmentexist) {
+			uniqueFragments.push(currentFragment);
+		} else 
+			console.log('[DEDUPED]');
+	}
+	return uniqueFragments;
+}
+
+const dedupedFragments = dedupeFragments(sortedFragments);
+console.log(dedupedFragments);
