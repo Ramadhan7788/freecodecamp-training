@@ -27,3 +27,10 @@ function getGrade (num) {
 
 const grade = getGrade(average);
 // console.log(grade);
+
+function hasPassingGrade (num) {
+	return getGrade(num) !== 'F';
+}
+
+const passingGrade = hasPassingGrade(78);
+console.log(passingGrade);
