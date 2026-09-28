@@ -29,8 +29,23 @@ const grade = getGrade(average);
 // console.log(grade);
 
 function hasPassingGrade (num) {
-	return getGrade(num) !== 'F';
+  const grade = getGrade(num);
+  if (grade === 'F') {
+    return false;
+  }
+  return true;
 }
 
-const passingGrade = hasPassingGrade(78);
-console.log(passingGrade);
+const passingGrade = hasPassingGrade(100);
+// console.log(passingGrade);
+
+function studentMsg (arr, num) {
+	const average = getAverage(arr);
+	const grade = getGrade(num);
+	const passingGrade = hasPassingGrade(num);
+
+	if (!passingGrade) {
+		return `Class average: ${average}. Your grade: ${grade}. You failed the course.`
+	} else if (passingGrade)
+		return `Class average: ${average}. Your grade: ${grade}. You passed the course.`
+}
