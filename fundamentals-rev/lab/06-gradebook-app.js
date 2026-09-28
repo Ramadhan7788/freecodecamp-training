@@ -49,3 +49,6 @@ function studentMsg (arr, num) {
 	} else if (passingGrade)
 		return `Class average: ${average}. Your grade: ${grade}. You passed the course.`
 }
+
+const message = studentMsg([56, 23, 89, 42, 75, 11, 68, 34, 91, 19], 100);
+console.log(message);
