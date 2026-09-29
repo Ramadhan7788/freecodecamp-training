@@ -65,4 +65,28 @@ function dedupeFragments (fragments) {
 }
 
 const dedupedFragments = dedupeFragments(sortedFragments);
-console.log(dedupedFragments);
+// console.log(dedupedFragments);
+
+function fillMissingFragments (deduFragments) {
+	const filledFragments = [];
+	if (deduFragments.length === 0 || deduFragments.length < 2) {
+		return [...deduFragments];
+	}
+	const minId = deduFragments[0].id;
+	const maxId = deduFragments.at(-1).id;
+
+	let index = 0;
+	for (let i = minId; i <= maxId; i++) {
+		if (deduFragments[index].id === i) {
+			filledFragments.push(deduFragments[index]);
+			index++;
+		}	else {
+			filledFragments.push({id: i, text: '[...]'});
+			console.log('[FILLED]')
+		}
+	} 
+	return filledFragments;
+}	
+
+const filledFragments = fillMissingFragments(dedupedFragments);
+console.log(filledFragments);
