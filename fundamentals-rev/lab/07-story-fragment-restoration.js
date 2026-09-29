@@ -94,3 +94,5 @@ const filledFragments = fillMissingFragments(dedupedFragments);
 function assembleStory (arrOfObj) {
 	return arrOfObj.map(obj => obj.text).join('\n');
 }
+
+console.log(assembleStory(filledFragments));
