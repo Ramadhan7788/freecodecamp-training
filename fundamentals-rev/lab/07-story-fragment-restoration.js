@@ -82,11 +82,15 @@ function fillMissingFragments (deduFragments) {
 			index++;
 		}	else {
 			filledFragments.push({id: i, text: '[...]'});
-			console.log('[FILLED]')
+			console.log('[FILLED]');
 		}
 	} 
 	return filledFragments;
 }	
 
 const filledFragments = fillMissingFragments(dedupedFragments);
-console.log(filledFragments);
+// console.log(filledFragments);
+
+function assembleStory (arrOfObj) {
+	return arrOfObj.map(obj => obj.text).join('\n');
+}
