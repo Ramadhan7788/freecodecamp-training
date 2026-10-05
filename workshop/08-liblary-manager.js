@@ -53,6 +53,18 @@ const library = [
 console.log("Books in the Library:\n");
 
 function getBookInformation(catalog) {
-  return catalog.map(book => book.title);
+  return catalog.map(book => `${book.title} by ${book.author}`
+	).join('\n');
 }
 
+console.log(getBookInformation(library));
+
+console.log('\nList of book summaries:\n');
+
+function getBookSummaries (catalog) {
+	return catalog.map(book => book.about).join('\n');
+}
+
+console.log(getBookSummaries(library));
+
+console.log('\nList of books by Arvid Kahl:\n');
