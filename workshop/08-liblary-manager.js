@@ -79,3 +79,10 @@ console.log('\nList of books by James Clear:\n');
 console.log(getBooksByAuthor(library, 'James Clear'));
 
 console.log('\nTotal number of pages for all library books:\n');
+
+function getTotalPages (catalog) {
+  const totalPages = catalog.map(book => book.pages);
+  return totalPages.reduce((acc, curr) => acc + curr, 0);
+}
+
+console.log(getTotalPages(library));
