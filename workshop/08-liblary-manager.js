@@ -68,3 +68,14 @@ function getBookSummaries (catalog) {
 console.log(getBookSummaries(library));
 
 console.log('\nList of books by Arvid Kahl:\n');
+
+function getBooksByAuthor (catalog, author) {
+	return catalog.filter(book => book.author === author);
+}
+
+console.log(getBooksByAuthor(library, 'Arvid Kahl'));
+
+console.log('\nList of books by James Clear:\n');
+console.log(getBooksByAuthor(library, 'James Clear'));
+
+console.log('\nTotal number of pages for all library books:\n');
